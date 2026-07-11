@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Life Hub - Weather</title>
+</head>
+<body bgcolor="#f0f4f8" text="#111111">
+    <table width="100%" border="0" cellpadding="20" cellspacing="0">
+        <tr valign="top">
+            <td width="250" bgcolor="#1e1b4b">
+                <h2><font color="#ffffff" size="6">LIFE HUB</font></h2>
+                <br><br>
+                <p><a href="index.html"><font color="#ffffff" size="5">Portfolio</font></a></p>
+                <p><a href="weather.html"><font color="#f472b6" size="5"><b>[ Weather ]</b></font></a></p>
+                <p><a href="calendar.html"><font color="#ffffff" size="5">Calendar</font></a></p>
+                <p><a href="todo.html"><font color="#ffffff" size="5">To-Do</font></a></p>
+                <p><a href="habits.html"><font color="#ffffff" size="5">Habits</font></a></p>
+                <p><a href="finance.html"><font color="#ffffff" size="5">Finance</font></a></p>
+            </td>
+            
+            <td>
+                <h1><font size="7">Local Weather Tracker</font></h1>
+                <p><font size="5" color="#555555">Real-time climate updates.</font></p>
+                <br>
+                
+                <table width="500" bgcolor="#ffffff" border="1" cellpadding="30" cellspacing="0">
+                    <tr>
+                        <td>
+                            <label><font size="5"><b>Target City:</b></font></label><br>
+                            <input type="text" id="city-input" placeholder="e.g. New York" style="font-size:1.3rem; width:100%; margin:10px 0;"><br><br>
+                            <button onclick="getWeather()" style="font-size:1.3rem; width:100%; padding:10px;"><b>Fetch Weather Conditions</b></button>
+                            
+                            <div id="weather-result" style="margin-top:30px; text-align:center;"></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById('city-input').value;
+            const resultDiv = document.getElementById('weather-result');
+            if(!city) return;
+            try {
+                const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`);
+                const geoData = await geoRes.json();
+                if(!geoData.results) { resultDiv.innerHTML = "<font size='5' color='red'><b>City not found.</b></font>"; return; }
+                const { latitude, longitude, name } = geoData.results[0];
+                const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+                const weatherData = await weatherRes.json();
+                resultDiv.innerHTML = `<font size="5">🌤️ Current temp in <b>${name}</b>:</font><br><br><font size="7" color="#8b5cf6"><b>${weatherData.current_weather.temperature}°C</b></font>`;
+            } catch (e) { resultDiv.innerHTML = "<font size='5' color='red'><b>Error syncing forecast.</b></font>"; }
+        }
+    </script>
+</body>
+</html>
