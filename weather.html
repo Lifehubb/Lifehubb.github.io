@@ -4,39 +4,32 @@
     <meta charset="UTF-8">
     <title>Life Hub - Weather</title>
 </head>
-<body bgcolor="#f0f4f8" text="#111111">
-    <table width="100%" border="0" cellpadding="20" cellspacing="0">
-        <tr valign="top">
-            <td width="250" bgcolor="#1e1b4b">
-                <h2><font color="#ffffff" size="6">LIFE HUB</font></h2>
-                <br><br>
-                <p><a href="index.html"><font color="#ffffff" size="5">Portfolio</font></a></p>
-                <p><a href="weather.html"><font color="#f472b6" size="5"><b>[ Weather ]</b></font></a></p>
-                <p><a href="calendar.html"><font color="#ffffff" size="5">Calendar</font></a></p>
-                <p><a href="todo.html"><font color="#ffffff" size="5">To-Do</font></a></p>
-                <p><a href="habits.html"><font color="#ffffff" size="5">Habits</font></a></p>
-                <p><a href="finance.html"><font color="#ffffff" size="5">Finance</font></a></p>
-            </td>
+<body style="font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%); background-attachment: fixed; color: #ffffff; display: flex; min-height: 100vh;">
+
+    <div style="width: 300px; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(16px); padding: 3rem 1.5rem; box-sizing: border-box; display: flex; flex-direction: column; border-right: 1px solid rgba(255, 255, 255, 0.1);">
+        <div style="font-size: 2rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 4rem; padding-left: 0.75rem; background: linear-gradient(to right, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LIFE HUB</div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <a href="index.html" style="color: #e2e8f0; text-decoration: none; padding: 1rem 1.4rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem;">Portfolio</a>
+            <a href="weather.html" style="color: #ffffff; text-decoration: none; padding: 1rem 1.4rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem; background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);">Weather</a>
+            <a href="calendar.html" style="color: #e2e8f0; text-decoration: none; padding: 1rem 1.4rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem;">Calendar</a>
+            <a href="todo.html" style="color: #e2e8f0; text-decoration: none; padding: 1rem 1.4rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem;">To-Do</a>
+            <a href="habits.html" style="color: #e2e8f0; text-decoration: none; padding: 1rem 1.4rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem;">Habits</a>
+            <a href="finance.html" style="color: #e2e8f0; text-decoration: none; padding: 1rem 1.4rem; border-radius: 12px; font-weight: 700; font-size: 1.25rem;">Finance</a>
+        </div>
+    </div>
+
+    <div style="flex: 1; padding: 5rem; max-width: 1200px;">
+        <h1 style="font-size: 3.5rem; background: linear-gradient(to right, #ffffff, #e2e8f0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 1rem 0; font-weight: 800;">Local Weather Tracker</h1>
+        <p style="color: #cbd5e1; font-size: 1.5rem; margin-bottom: 3.5rem; font-weight: 500;">Real-time climate updates.</p>
+        
+        <div style="background: #ffffff; border-radius: 24px; padding: 3.5rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); color: #0f172a; max-width: 550px;">
+            <label style="font-weight: 800; color: #1e1b4b; font-size: 1.3rem;">Target City</label>
+            <input type="text" id="city-input" placeholder="e.g. New York" style="width: 100%; padding: 1.2rem; margin: 0.75rem 0 2rem 0; border: 3px solid #e2e8f0; border-radius: 14px; font-size: 1.25rem; font-weight: 600; box-sizing: border-box; background: #f8fafc;">
+            <button onclick="getWeather()" style="width: 100%; padding: 1.2rem; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; border: none; border-radius: 14px; font-size: 1.3rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);">Fetch Weather Conditions</button>
             
-            <td>
-                <h1><font size="7">Local Weather Tracker</font></h1>
-                <p><font size="5" color="#555555">Real-time climate updates.</font></p>
-                <br>
-                
-                <table width="500" bgcolor="#ffffff" border="1" cellpadding="30" cellspacing="0">
-                    <tr>
-                        <td>
-                            <label><font size="5"><b>Target City:</b></font></label><br>
-                            <input type="text" id="city-input" placeholder="e.g. New York" style="font-size:1.3rem; width:100%; margin:10px 0;"><br><br>
-                            <button onclick="getWeather()" style="font-size:1.3rem; width:100%; padding:10px;"><b>Fetch Weather Conditions</b></button>
-                            
-                            <div id="weather-result" style="margin-top:30px; text-align:center;"></div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+            <div id="weather-result" style="margin-top: 3rem; font-size: 1.6rem; text-align: center;"></div>
+        </div>
+    </div>
 
     <script>
         async function getWeather() {
@@ -46,12 +39,12 @@
             try {
                 const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`);
                 const geoData = await geoRes.json();
-                if(!geoData.results) { resultDiv.innerHTML = "<font size='5' color='red'><b>City not found.</b></font>"; return; }
+                if(!geoData.results) { resultDiv.innerHTML = "<span style='color:#f43f5e; font-weight:700;'>City not found.</span>"; return; }
                 const { latitude, longitude, name } = geoData.results[0];
                 const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
                 const weatherData = await weatherRes.json();
-                resultDiv.innerHTML = `<font size="5">🌤️ Current temp in <b>${name}</b>:</font><br><br><font size="7" color="#8b5cf6"><b>${weatherData.current_weather.temperature}°C</b></font>`;
-            } catch (e) { resultDiv.innerHTML = "<font size='5' color='red'><b>Error syncing forecast.</b></font>"; }
+                resultDiv.innerHTML = `🌤️ Current temp in <strong>${name}</strong>:<br><span style="font-size: 4.5rem; color: #8b5cf6; font-weight: 900; display: block; margin-top: 1.5rem;">${weatherData.current_weather.temperature}°C</span>`;
+            } catch (e) { resultDiv.innerText = "Error syncing forecast."; }
         }
     </script>
 </body>
