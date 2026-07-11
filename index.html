@@ -1,350 +1,47 @@
-Here is the complete, updated `index.html` code with the **"Life Hub"** corner title fully integrated, along with all the features (portfolio, calendar, to-do list, weather, habit tracker, and finance manager) in one single file.
-
-### Fully Compiled Code (`index.html`)
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Hub - Dashboard & Portfolio</title>
-    <style>
-        :root {
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-color: #333;
-            --accent-color: #4a90e2;
-            --success-color: #2ecc71;
-            --danger-color: #e74c3c;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            position: relative;
-        }
-
-        /* Corner Title Styling */
-        .corner-title {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        header {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 2.5rem 2rem 2rem 2rem;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            margin-top: 0;
-            border-bottom: 2px solid var(--bg-color);
-            padding-bottom: 0.5rem;
-            color: var(--accent-color);
-        }
-
-        input, button, select {
-            width: 100%;
-            padding: 0.7rem;
-            margin: 0.5rem 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            padding: 0.5rem;
-            background: var(--bg-color);
-            margin-bottom: 0.5rem;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .list-btn {
-            width: auto;
-            margin: 0;
-            padding: 0.3rem 0.6rem;
-            background-color: var(--danger-color);
-        }
-
-        .project-links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+    <title>Life Hub - Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="corner-title">Life Hub</div>
-
-    <header>
-        <h1>Welcome to My Space</h1>
-        <p>A centralized hub for my portfolio, daily tracking, and productivity.</p>
-    </header>
-
-    <div class="container">
-
-        <div class="card" id="portfolio">
-            <h2>Portfolio & Projects</h2>
-            <p>Hi there! I build web applications and digital projects. Check out my work below:</p>
-            <ul>
+    <div class="sidebar">
+        <div class="corner-title">LIFE HUB</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Portfolio</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="todo.html">To-Do</a></li>
+            <li><a href="habits.html">Habits</a></li>
+            <li><a href="finance.html">Finance</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>About Me & Portfolio</h1>
+        <p class="subtitle">Welcome to my personal workspace showcase.</p>
+        
+        <div class="card">
+            <h2>My Creative Profile</h2>
+            <p>I am a developer, creator, and organized thinker building modern web experiences.</p>
+            <hr style="border:0; border-top:1px solid var(--border); margin:2rem 0;">
+            <h3>Featured Projects</h3>
+            <ul class="data-list">
                 <li>
-                    <div><strong>Project Alpha</strong> - A web-based utility tool</div>
-                    <span class="project-links"><a href="#" target="_blank">View Project</a></span>
+                    <div>
+                        <strong>Project Alpha</strong> — A dynamic personal layout engine.
+                    </div>
+                    <a href="#" style="color:var(--accent); text-decoration:none; font-weight:600;">View Link</a>
                 </li>
                 <li>
-                    <div><strong>Project Beta</strong> - Dynamic portfolio build</div>
-                    <span class="project-links"><a href="#" target="_blank">View Project</a></span>
+                    <div>
+                        <strong>Project Beta</strong> — Open source frontend dashboards.
+                    </div>
+                    <a href="#" style="color:var(--accent); text-decoration:none; font-weight:600;">View Link</a>
                 </li>
             </ul>
         </div>
-
-        <div class="card" id="weather">
-            <h2>Local Weather</h2>
-            <input type="text" id="city-input" placeholder="Enter city (e.g., Paris)">
-            <button onclick="getWeather()">Check Weather</button>
-            <div id="weather-result" style="margin-top: 1rem; font-weight: bold; text-align: center;"></div>
-        </div>
-
-        <div class="card" id="calendar">
-            <h2>Calendar & Agenda</h2>
-            <h3 id="live-clock" style="text-align: center; color: var(--accent-color);"></h3>
-            <input type="date" id="calendar-event-date">
-            <input type="text" id="calendar-event-text" placeholder="Event description...">
-            <button onclick="addEvent()">Save Event</button>
-            <ul id="event-list"></ul>
-        </div>
-
-        <div class="card" id="todo">
-            <h2>Task Management</h2>
-            <input type="text" id="todo-input" placeholder="What needs to be done?">
-            <button onclick="addTodo()">Add Task</button>
-            <ul id="todo-list"></ul>
-        </div>
-
-        <div class="card" id="habits">
-            <h2>Habit Tracker</h2>
-            <input type="text" id="habit-input" placeholder="New habit routine (e.g., Read)">
-            <button onclick="addHabit()">Track Habit</button>
-            <ul id="habit-list"></ul>
-        </div>
-
-        <div class="card" id="budget">
-            <h2>Expense & Income Ledger</h2>
-            <h3 id="balance" style="text-align: center;">Balance: $0.00</h3>
-            <input type="number" id="amount-input" placeholder="Amount ($)">
-            <select id="finance-type">
-                <option value="income">Income (+)</option>
-                <option value="expense">Expense (-)</option>
-            </select>
-            <input type="text" id="finance-desc" placeholder="Source / Description">
-            <button onclick="addTransaction()">Add Entry</button>
-            <ul id="transaction-list"></ul>
-        </div>
-
     </div>
-
-    <script>
-        // --- LIVE CLOCK ---
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('live-clock').innerText = now.toLocaleString();
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // --- WEATHER (Using open-meteo API) ---
-        async function getWeather() {
-            const city = document.getElementById('city-input').value;
-            const resultDiv = document.getElementById('weather-result');
-            if(!city) return;
-            
-            try {
-                const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`);
-                const geoData = await geoRes.json();
-                
-                if(!geoData.results) {
-                    resultDiv.innerText = "City not found.";
-                    return;
-                }
-                
-                const { latitude, longitude, name } = geoData.results[0];
-                const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
-                const weatherData = await weatherRes.json();
-                
-                const temp = weatherData.current_weather.temperature;
-                resultDiv.innerText = `Current temp in ${name}: ${temp}°C`;
-            } catch (error) {
-                resultDiv.innerText = "Error fetching weather data.";
-            }
-        }
-
-        // --- TO-DO LIST (LocalStorage) ---
-        let todos = JSON.parse(localStorage.getItem('todos')) || [];
-        function renderTodos() {
-            const list = document.getElementById('todo-list');
-            list.innerHTML = '';
-            todos.forEach((todo, index) => {
-                list.innerHTML += `<li>${todo} <button class="list-btn" onclick="deleteTodo(${index})">X</button></li>`;
-            });
-            localStorage.setItem('todos', JSON.stringify(todos));
-        }
-        function addTodo() {
-            const input = document.getElementById('todo-input');
-            if(input.value.trim() === '') return;
-            todos.push(input.value);
-            input.value = '';
-            renderTodos();
-        }
-        function deleteTodo(index) {
-            todos.splice(index, 1);
-            renderTodos();
-        }
-        renderTodos();
-
-        // --- HABIT TRACKER (LocalStorage) ---
-        let habits = JSON.parse(localStorage.getItem('habits')) || [];
-        function renderHabits() {
-            const list = document.getElementById('habit-list');
-            list.innerHTML = '';
-            habits.forEach((habit, index) => {
-                list.innerHTML += `<li>${habit.name} (Done: ${habit.count} days) 
-                    <div>
-                        <button class="list-btn" style="background-color:var(--success-color); margin-right:5px;" onclick="incrementHabit(${index})">+</button>
-                        <button class="list-btn" onclick="deleteHabit(${index})">X</button>
-                    </div>
-                </li>`;
-            });
-            localStorage.setItem('habits', JSON.stringify(habits));
-        }
-        function addHabit() {
-            const input = document.getElementById('habit-input');
-            if(input.value.trim() === '') return;
-            habits.push({ name: input.value, count: 0 });
-            input.value = '';
-            renderHabits();
-        }
-        function incrementHabit(index) {
-            habits[index].count++;
-            renderHabits();
-        }
-        function deleteHabit(index) {
-            habits.splice(index, 1);
-            renderHabits();
-        }
-        renderHabits();
-
-        // --- CALENDAR EVENTS (LocalStorage) ---
-        let events = JSON.parse(localStorage.getItem('events')) || [];
-        function renderEvents() {
-            const list = document.getElementById('event-list');
-            list.innerHTML = '';
-            events.forEach((ev, index) => {
-                list.innerHTML += `<li><strong>${ev.date}</strong>: ${ev.text} <button class="list-btn" onclick="deleteEvent(${index})">X</button></li>`;
-            });
-            localStorage.setItem('events', JSON.stringify(events));
-        }
-        function addEvent() {
-            const dateInput = document.getElementById('calendar-event-date').value;
-            const textInput = document.getElementById('calendar-event-text').value;
-            if(!dateInput || !textInput) return;
-            events.push({ date: dateInput, text: textInput });
-            document.getElementById('calendar-event-text').value = '';
-            renderEvents();
-        }
-        function deleteEvent(index) {
-            events.splice(index, 1);
-            renderEvents();
-        }
-        renderEvents();
-
-        // --- BUDGET TRACKER (LocalStorage) ---
-        let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-        function renderBudget() {
-            const list = document.getElementById('transaction-list');
-            const balanceEl = document.getElementById('balance');
-            list.innerHTML = '';
-            let balance = 0;
-
-            transactions.forEach((t, index) => {
-                const isIncome = t.type === 'income';
-                balance += isIncome ? t.amount : -t.amount;
-                list.innerHTML += `
-                    <li style="border-left: 5px solid ${isIncome ? 'var(--success-color)' : 'var(--danger-color)'}">
-                        ${t.desc}: ${isIncome ? '+' : '-'}$${t.amount.toFixed(2)}
-                        <button class="list-btn" onclick="deleteTransaction(${index})">X</button>
-                    </li>`;
-            });
-
-            balanceEl.innerText = `Balance: $${balance.toFixed(2)}`;
-            localStorage.setItem('transactions', JSON.stringify(transactions));
-        }
-        function addTransaction() {
-            const amount = parseFloat(document.getElementById('amount-input').value);
-            const type = document.getElementById('finance-type').value;
-            const desc = document.getElementById('finance-desc').value || 'Entry';
-            
-            if(isNaN(amount) || amount <= 0) return;
-            
-            transactions.push({ amount, type, desc });
-            document.getElementById('amount-input').value = '';
-            document.getElementById('finance-desc').value = '';
-            renderBudget();
-        }
-        function deleteTransaction(index) {
-            transactions.splice(index, 1);
-            renderBudget();
-        }
-        renderBudget();
-    </script>
 </body>
 </html>
-
-```
